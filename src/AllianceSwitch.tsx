@@ -4,10 +4,9 @@ import { styled } from "@mui/system";
 import { useSwitch, UseSwitchParameters } from "@mui/base/useSwitch";
 import { MouseEvent } from "react";
 
-type Props = { alliance: number, setAlliance: (alliance: number) => void };
+type Props = { alliance: number; setAlliance: (alliance: number) => void };
 
 export default function AllianceSwitch({ alliance, setAlliance }: Props) {
-
   const bgClass = alliance == 0 ? "bg-red-300" : "bg-blue-300";
   const CircleColor = alliance == 0 ? "bg-red-600" : "bg-blue-600";
 
@@ -34,6 +33,5 @@ export default function AllianceSwitch({ alliance, setAlliance }: Props) {
         onChange={() => setAlliance(alliance == 0 ? 1 : 0)}
       />
     </div>
-  )
-
+  );
 }
