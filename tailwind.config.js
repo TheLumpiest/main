@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{html,tsx}"],
   theme: {
+    fontFamily: {
+      'serif': ['Georgia', 'ui-serif', 'system-serif'],
+    },
     extend: {},
   },
   plugins: [],

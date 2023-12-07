@@ -1,6 +1,11 @@
 import React, { PropsWithChildren } from "react";
 import { createContext, useContext } from "react";
 
+type ContextState<T> = {
+  data: T;
+  setData: Function;
+};
+
 type Settings = {
   Alliance: String;
   Position: String;
@@ -26,13 +31,13 @@ type Teleop = {
 
 const defAuto = [0, 0, false];
 const defTeleop = [0, 0, null];
-const defSettings = ["Red", "1", null];
+const defSettings: Settings = {Alliance: "Red", Position: "1", Competition: ""};
 const defPreMatch = [null, false];
 
-const SettingsContext = createContext(defSettings);
-const PreMatchContext = createContext(defPreMatch);
-const AutoContext = createContext(defAuto);
-const TeleopContext = createContext(defTeleop);
+export const SettingsContext = createContext(defSettings);
+export const PreMatchContext = createContext(defPreMatch);
+export const AutoContext = createContext(defAuto);
+export const TeleopContext = createContext(defTeleop);
 
 export function ContextProvider(props: PropsWithChildren<{}>) {
   const { children } = props;

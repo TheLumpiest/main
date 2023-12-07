@@ -13,7 +13,7 @@ export default function App() {
   const [alliance, setAlliance] = React.useState(Alliance.RED);
 
   return (
-    <div className="min-h-screen w-screen ">
+    <div className="min-h-screen w-screen font-serif">
       <div className='flex flex-row grid-1 ${alliance == Alliance.RED ? "bg-red-400" : "bg-blue-500"}'>
         <button
           className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
@@ -35,7 +35,7 @@ export default function App() {
         <AllianceSwitch alliance={alliance} setAlliance={setAlliance} />
       </div>
       {formType == "Autonomous" && (
-        <AutonomousForm alliance={alliance} setAlliance={setAlliance} />
+        <AutonomousForm />
       )}
       {formType == "Teleop" && (
         <TeleopForm alliance={alliance} setAlliance={setAlliance} />
