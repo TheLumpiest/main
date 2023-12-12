@@ -4,23 +4,34 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
 import { ContextProvider } from './ContextProvider';
 // import SettingsForm from './Forms/SettingsForm';
-// import PreMatchForm from './Forms/PreMatchForm';
+import PreMatchForm from './Forms/PreMatchForm';
 import AutonomousForm from './Forms/AutonomousForm';
 import { ThemeProvider } from '@mui/material/styles';
-import App from './App';
+// App is no longer used, delete it in future once all functionality is copied
+// import App from './App';
 import theme from './theme';
 
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="auto" element={<AutonomousForm />} />
-    </Route>
-  )
+  [
+    {
+      path: "pre",
+      element: <PreMatchForm />,
+    },
+    {
+      path: "auto",
+      element: <AutonomousForm />,
+    },
+    {
+      path: "/",
+      element: <Navigate to="/pre" replace />
+    },
+  ]
 )
 
 const rootElement = document.getElementById('root');
@@ -30,6 +41,9 @@ root.render(
   <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
-    <App />
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
+    {/* <PreMatchForm /> */}
   </ThemeProvider>,
 );
