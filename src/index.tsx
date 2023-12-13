@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import {
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   Navigate,
@@ -16,8 +16,10 @@ import { ThemeProvider } from '@mui/material/styles';
 // App is no longer used, delete it in future once all functionality is copied
 // import App from './App';
 import theme from './theme';
+import SettingsForm from './Forms/SettingsForm';
+import TeleopForm from './Forms/TeleopForm';
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: "pre",
@@ -26,6 +28,14 @@ const router = createBrowserRouter(
     {
       path: "auto",
       element: <AutonomousForm />,
+    },
+    {
+      path: "settings",
+      element: <SettingsForm />,
+    },
+    {
+      path: "tele",
+      element: <TeleopForm alliance={0} setAlliance={() => {}} />,
     },
     {
       path: "/",
