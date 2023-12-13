@@ -29,14 +29,25 @@ type Teleop = {
   EndGame: number | String;
 };
 
-const defAuto = [0, 0, false];
-const defTeleop = [0, 0, null];
+const defAuto: Auto = {
+  UpperAuto: 0,
+  LowerAuto: 0,
+  Taxi: false,
+};
+const defTeleop: Teleop = {
+  UpperTele: 0,
+  LowerTele: 0,
+  EndGame: "",
+};
 const defSettings: Settings = {
   Alliance: "Red",
   Position: "1",
   Competition: "",
 };
-const defPreMatch = [null, false];
+const defPreMatch: PreMatch = {
+  Team: "",
+  NoShow: false,
+};
 
 export const SettingsContext = createContext(defSettings);
 export const PreMatchContext = createContext(defPreMatch);
