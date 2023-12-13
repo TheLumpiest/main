@@ -31,7 +31,11 @@ type Teleop = {
 
 const defAuto = [0, 0, false];
 const defTeleop = [0, 0, null];
-const defSettings: Settings = {Alliance: "Red", Position: "1", Competition: ""};
+const defSettings: Settings = {
+  Alliance: "Red",
+  Position: "1",
+  Competition: "",
+};
 const defPreMatch = [null, false];
 
 export const SettingsContext = createContext(defSettings);
