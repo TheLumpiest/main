@@ -43,7 +43,7 @@ export default function AutonomousForm() {
   const settings = React.useContext(SettingsContext);
 
   const chooserValues =
-    settings.Alliance == "Red"
+    settings.data.Alliance == "Red"
       ? ["Red 1", "Red 2", "Red 3"]
       : ["Blue 1", "Blue 2", "Blue 3"];
 
@@ -55,7 +55,7 @@ export default function AutonomousForm() {
   return (
     <div
       className={`min-h-screen w-screen flex flex-col items-center
-      ${settings.Alliance == "Red" ? "bg-red-400" : "bg-blue-500"}`}
+      ${settings.data.Alliance == "Red" ? "bg-red-400" : "bg-blue-500"}`}
     >
       <form
         className="flex flex-col items-center justify-center"

@@ -32,11 +32,9 @@ export default function App() {
         <div className="flex font-semibold text-2x1 text-center p-2">
           Alliance
         </div>
-        <AllianceSwitch alliance={alliance} setAlliance={setAlliance} />
+        {/* <AllianceSwitch alliance={alliance} setAlliance={setAlliance} /> */}
       </div>
-      {formType == "Autonomous" && (
-        <AutonomousForm />
-      )}
+      {formType == "Autonomous" && <AutonomousForm />}
       {formType == "Teleop" && (
         <TeleopForm alliance={alliance} setAlliance={setAlliance} />
       )}

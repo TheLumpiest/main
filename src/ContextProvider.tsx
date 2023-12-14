@@ -1,13 +1,15 @@
 import React, { PropsWithChildren } from "react";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
+
+export type alliance = "Red" | "Blue";
 
 type ContextState<T> = {
   data: T;
-  setData: Function;
+  setData: (data: T) => void;
 };
 
 type Settings = {
-  Alliance: String;
+  Alliance: alliance;
   Position: String;
   Competition: String;
 };
@@ -49,19 +51,45 @@ const defPreMatch: PreMatch = {
   NoShow: false,
 };
 
-export const SettingsContext = createContext(defSettings);
-export const PreMatchContext = createContext(defPreMatch);
-export const AutoContext = createContext(defAuto);
-export const TeleopContext = createContext(defTeleop);
+// Empty function to initialize as placeholder for contexts
+const EF = () => {};
+
+export const SettingsContext = createContext<ContextState<Settings>>({
+  data: defSettings,
+  setData: () => {},
+});
+export const PreMatchContext = createContext<ContextState<PreMatch>>({
+  data: defPreMatch,
+  setData: () => {},
+});
+export const AutoContext = createContext<ContextState<Auto>>({
+  data: defAuto,
+  setData: () => {},
+});
+export const TeleopContext = createContext<ContextState<Teleop>>({
+  data: defTeleop,
+  setData: () => {},
+});
 
 export function ContextProvider(props: PropsWithChildren<{}>) {
+  const [settings, setSettings] = useState<Settings>(defSettings);
+  const [preMatch, setPreMatch] = useState<PreMatch>(defPreMatch);
+  const [auto, setAuto] = useState<Auto>(defAuto);
+  const [teleop, setTeleop] = useState<Teleop>(defTeleop);
+
   const { children } = props;
   return (
     <div>
-      <SettingsContext.Provider value={defSettings}>
-        <PreMatchContext.Provider value={defPreMatch}>
-          <AutoContext.Provider value={defAuto}>
-            <TeleopContext.Provider value={defTeleop}>
+      <SettingsContext.Provider
+        value={{ data: settings, setData: setSettings }}
+      >
+        <PreMatchContext.Provider
+          value={{ data: preMatch, setData: setPreMatch }}
+        >
+          <AutoContext.Provider value={{ data: auto, setData: setAuto }}>
+            <TeleopContext.Provider
+              value={{ data: teleop, setData: setTeleop }}
+            >
               {children}
             </TeleopContext.Provider>
           </AutoContext.Provider>
