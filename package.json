@@ -16,8 +16,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "css:update": "npx tailwindcss -o public/output.css",
-    "css:watch": "npx tailwindcss -o public/output.css --watch",
+    "tailwind:compile": "npx tailwindcss -o public/output.css",
+    "tailwind:watch": "npx tailwindcss -o public/output.css --watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
