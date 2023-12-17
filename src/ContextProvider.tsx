@@ -3,20 +3,25 @@ import { createContext, useContext, useState } from "react";
 
 export type alliance = "Red" | "Blue";
 
-type ContextState<T> = {
-  data: T;
-  setData: (data: T) => void;
-};
-
 type Settings = {
   Alliance: alliance;
   Position: String;
   Competition: String;
 };
 
+type SettingsState = {
+  settings: Settings;
+  setSettings: React.Dispatch<React.SetStateAction<Settings>>;
+};
+
 type PreMatch = {
   Team: String;
   NoShow: boolean;
+};
+
+type PreMatchState = {
+  preMatch: PreMatch;
+  setPreMatch: React.Dispatch<React.SetStateAction<PreMatch>>;
 };
 
 type Auto = {
@@ -25,10 +30,20 @@ type Auto = {
   Taxi: boolean;
 };
 
+type AutoState = {
+  auto: Auto;
+  setAuto: React.Dispatch<React.SetStateAction<Auto>>;
+};
+
 type Teleop = {
   UpperTele: number;
   LowerTele: number;
   EndGame: number | String;
+};
+
+type TeleopState = {
+  teleop: Teleop;
+  setTeleop: React.Dispatch<React.SetStateAction<Teleop>>;
 };
 
 const defAuto: Auto = {
@@ -51,25 +66,10 @@ const defPreMatch: PreMatch = {
   NoShow: false,
 };
 
-// Empty function to initialize as placeholder for contexts
-const EF = () => {};
-
-export const SettingsContext = createContext<ContextState<Settings>>({
-  data: defSettings,
-  setData: () => {},
-});
-export const PreMatchContext = createContext<ContextState<PreMatch>>({
-  data: defPreMatch,
-  setData: () => {},
-});
-export const AutoContext = createContext<ContextState<Auto>>({
-  data: defAuto,
-  setData: () => {},
-});
-export const TeleopContext = createContext<ContextState<Teleop>>({
-  data: defTeleop,
-  setData: () => {},
-});
+const SettingsContext = createContext<SettingsState | null>(null);
+const PreMatchContext = createContext<PreMatchState | null>(null);
+const AutoContext = createContext<AutoState | null>(null);
+const TeleopContext = createContext<TeleopState | null>(null);
 
 export function ContextProvider(props: PropsWithChildren<{}>) {
   const [settings, setSettings] = useState<Settings>(defSettings);
@@ -80,16 +80,10 @@ export function ContextProvider(props: PropsWithChildren<{}>) {
   const { children } = props;
   return (
     <div>
-      <SettingsContext.Provider
-        value={{ data: settings, setData: setSettings }}
-      >
-        <PreMatchContext.Provider
-          value={{ data: preMatch, setData: setPreMatch }}
-        >
-          <AutoContext.Provider value={{ data: auto, setData: setAuto }}>
-            <TeleopContext.Provider
-              value={{ data: teleop, setData: setTeleop }}
-            >
+      <SettingsContext.Provider value={{ settings, setSettings }}>
+        <PreMatchContext.Provider value={{ preMatch, setPreMatch }}>
+          <AutoContext.Provider value={{ auto, setAuto }}>
+            <TeleopContext.Provider value={{ teleop, setTeleop }}>
               {children}
             </TeleopContext.Provider>
           </AutoContext.Provider>
@@ -97,4 +91,40 @@ export function ContextProvider(props: PropsWithChildren<{}>) {
       </SettingsContext.Provider>
     </div>
   );
+}
+
+export function useSettingsContext(): SettingsState {
+  const context = useContext(SettingsContext);
+  if (!context) {
+    throw Error("useSettingsContext must be used within a ContextProvider");
+  }
+
+  return context;
+}
+
+export function usePreMatchContext(): PreMatchState {
+  const context = useContext(PreMatchContext);
+  if (!context) {
+    throw Error("usePreMatchContext must be used within a ContextProvider");
+  }
+
+  return context;
+}
+
+export function useAutoContext(): AutoState {
+  const context = useContext(AutoContext);
+  if (!context) {
+    throw Error("useAutoContext must be used within a ContextProvider");
+  }
+
+  return context;
+}
+
+export function useTeleopContext(): TeleopState {
+  const context = useContext(TeleopContext);
+  if (!context) {
+    throw Error("useTeleopContext must be used within a ContextProvider");
+  }
+
+  return context;
 }

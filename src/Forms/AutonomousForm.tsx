@@ -2,7 +2,7 @@ import TeamSelector from "../TeamSelector";
 import Chooser from "../Chooser";
 import { MouseEvent } from "react";
 import AllianceSwitch from "../AllianceSwitch";
-import { SettingsContext } from "../ContextProvider";
+import { useSettingsContext } from "../ContextProvider";
 import React from "react";
 
 const ScoreCounter = ({
@@ -40,10 +40,10 @@ export default function AutonomousForm() {
   const [highScore, setHighScore] = React.useState(0);
   const [lowScore, setLowScore] = React.useState(0);
   const [comments, setComments] = React.useState("");
-  const settings = React.useContext(SettingsContext);
+  const { settings, setSettings } = useSettingsContext();
 
   const chooserValues =
-    settings.data.Alliance == "Red"
+    settings.Alliance == "Red"
       ? ["Red 1", "Red 2", "Red 3"]
       : ["Blue 1", "Blue 2", "Blue 3"];
 
@@ -55,7 +55,7 @@ export default function AutonomousForm() {
   return (
     <div
       className={`min-h-screen w-screen flex flex-col items-center
-      ${settings.data.Alliance == "Red" ? "bg-red-400" : "bg-blue-500"}`}
+      ${settings.Alliance == "Red" ? "bg-red-400" : "bg-blue-500"}`}
     >
       <form
         className="flex flex-col items-center justify-center"
