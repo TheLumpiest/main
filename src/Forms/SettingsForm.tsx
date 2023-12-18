@@ -9,10 +9,7 @@ import { Link } from "react-router-dom";
 export default function PreMatchForm() {
   const { settings, setSettings } = useSettingsContext();
   return (
-    <div
-      className={`min-h-screen w-screen flex flex-col items-center
-      ${settings.Alliance == "Red" ? "bg-red-400" : "bg-blue-500"}`}
-    >
+    <div className="flex flex-col items-center">
       <h1>Settings Form</h1>
       <AllianceSwitch />
       <h2>This is not implemented yet</h2>

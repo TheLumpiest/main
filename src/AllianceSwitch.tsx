@@ -10,8 +10,9 @@ type Props = { alliance: alliance; setAlliance: (alliance: alliance) => void };
 export default function AllianceSwitch() {
   const { settings, setSettings } = useSettingsContext();
 
-  const bgClass = settings.Alliance == "Red" ? "bg-red-300" : "bg-blue-300";
-  const CircleColor = settings.Alliance == "Red" ? "bg-red-600" : "bg-blue-600";
+  const bgClass = settings.Alliance == "Red" ? "bg-red-light" : "bg-blue-light";
+  const CircleColor =
+    settings.Alliance == "Red" ? "bg-red-dark" : "bg-blue-dark";
 
   return (
     <div className="">

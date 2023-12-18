@@ -4,6 +4,7 @@ import TeleopForm from "./Forms/TeleopForm";
 import AllianceSwitch from "./AllianceSwitch";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
+import { useSettingsContext } from "./ContextProvider";
 
 enum Alliance {
   RED,
@@ -11,8 +12,13 @@ enum Alliance {
 }
 
 export default function App() {
+  const { settings } = useSettingsContext();
+
   return (
-    <div className="min-h-screen w-screen font-sans">
+    <div
+      className={`transition min-h-screen w-screen font-sans flex flex-col items-center
+      ${settings.Alliance == "Red" ? "bg-red-bg" : "bg-blue-bg"}`}
+    >
       <NavBar />
       {/* the Outlet element is used to give react-router a place to put the children of this component.
           every route is rendered in the App component, so that the NavBar is shown. Every other route is

@@ -53,10 +53,7 @@ export default function AutonomousForm() {
   }
 
   return (
-    <div
-      className={`min-h-screen w-screen flex flex-col items-center
-      ${settings.Alliance == "Red" ? "bg-red-400" : "bg-blue-500"}`}
-    >
+    <div className="flex flex-col items-center">
       <form
         className="flex flex-col items-center justify-center"
         onSubmit={handleSubmit}

@@ -4,6 +4,7 @@ import Chooser from "../Chooser";
 import { MouseEvent } from "react";
 import AllianceSwitch from "../AllianceSwitch";
 import React from "react";
+import { useSettingsContext } from "../ContextProvider";
 
 const ScoreCounter = ({
   label,
@@ -36,10 +37,12 @@ const ScoreCounter = ({
 
 type Props = { alliance: number; setAlliance: (alliance: number) => void };
 
-export default function TeleopForm({ alliance, setAlliance }: Props) {
+export default function TeleopForm() {
   const [highScore, setHighScore] = React.useState(0);
   const [lowScore, setLowScore] = React.useState(0);
   const [comments, setComments] = React.useState("");
+
+  const { settings } = useSettingsContext();
 
   function handleSubmit(formData: MouseEvent<HTMLFormElement>) {
     formData.preventDefault();
@@ -47,10 +50,7 @@ export default function TeleopForm({ alliance, setAlliance }: Props) {
   }
 
   return (
-    <div
-      className={`min-h-screen w-screen flex flex-col items-center
-      ${alliance == 0 ? "bg-red-400" : "bg-blue-500"}`}
-    >
+    <div className="flex flex-col items-center">
       <form
         className="flex flex-col items-center justify-center"
         onSubmit={handleSubmit}

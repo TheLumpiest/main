@@ -40,7 +40,7 @@ const router = createHashRouter([
       },
       {
         path: "tele",
-        element: <TeleopForm alliance={0} setAlliance={() => {}} />,
+        element: <TeleopForm />,
       },
       {
         path: "/",
