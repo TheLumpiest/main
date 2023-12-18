@@ -18,27 +18,35 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import SettingsForm from "./Forms/SettingsForm";
 import TeleopForm from "./Forms/TeleopForm";
+import NavBar from "./NavBar";
+import App from "./App";
 
 const router = createHashRouter([
   {
-    path: "pre",
-    element: <PreMatchForm />,
-  },
-  {
-    path: "auto",
-    element: <AutonomousForm />,
-  },
-  {
-    path: "settings",
-    element: <SettingsForm />,
-  },
-  {
-    path: "tele",
-    element: <TeleopForm alliance={0} setAlliance={() => {}} />,
-  },
-  {
     path: "/",
-    element: <Navigate to="/pre" replace />,
+    element: <App />,
+    children: [
+      {
+        path: "pre",
+        element: <PreMatchForm />,
+      },
+      {
+        path: "auto",
+        element: <AutonomousForm />,
+      },
+      {
+        path: "settings",
+        element: <SettingsForm />,
+      },
+      {
+        path: "tele",
+        element: <TeleopForm alliance={0} setAlliance={() => {}} />,
+      },
+      {
+        path: "/",
+        element: <Navigate to="/pre" replace />,
+      },
+    ],
   },
 ]);
 
@@ -50,7 +58,9 @@ root.render(
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
     <ContextProvider>
-      <RouterProvider router={router} />
+      <div className="min-h-screen w-screen">
+        <RouterProvider router={router} />
+      </div>
     </ContextProvider>
     {/* <PreMatchForm /> */}
   </ThemeProvider>
