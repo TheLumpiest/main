@@ -1,15 +1,17 @@
 import * as React from "react";
 import clsx from "clsx";
 import { styled } from "@mui/system";
-import { alliance } from "./ContextProvider";
+import { alliance, useSettingsContext } from "./ContextProvider";
 import { useSwitch, UseSwitchParameters } from "@mui/base/useSwitch";
 import { MouseEvent } from "react";
 
 type Props = { alliance: alliance; setAlliance: (alliance: alliance) => void };
 
-export default function AllianceSwitch({ alliance, setAlliance }: Props) {
-  const bgClass = alliance == "Red" ? "bg-red-300" : "bg-blue-300";
-  const CircleColor = alliance == "Red" ? "bg-red-600" : "bg-blue-600";
+export default function AllianceSwitch() {
+  const { settings, setSettings } = useSettingsContext();
+
+  const bgClass = settings.Alliance == "Red" ? "bg-red-300" : "bg-blue-300";
+  const CircleColor = settings.Alliance == "Red" ? "bg-red-600" : "bg-blue-600";
 
   return (
     <div className="">
@@ -31,7 +33,13 @@ export default function AllianceSwitch({ alliance, setAlliance }: Props) {
         type="checkbox"
         role="switch"
         id="flexSwitchCheckDefault"
-        onChange={() => setAlliance(alliance == "Red" ? "Blue" : "Red")}
+        checked={settings.Alliance == "Blue"}
+        onChange={() =>
+          setSettings({
+            ...settings,
+            Alliance: settings.Alliance == "Red" ? "Blue" : "Red",
+          })
+        }
       />
     </div>
   );

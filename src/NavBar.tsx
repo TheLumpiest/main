@@ -43,12 +43,7 @@ export default function NavBar() {
         <div className="flex font-semibold text-2x1 text-center p-2">
           Alliance
         </div>
-        <AllianceSwitch
-          alliance={settings.Alliance}
-          setAlliance={(alliance) => {
-            setSettings({ ...settings, Alliance: alliance });
-          }}
-        />
+        <AllianceSwitch />
       </div>
     </>
   );

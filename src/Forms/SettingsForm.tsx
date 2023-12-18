@@ -14,12 +14,7 @@ export default function PreMatchForm() {
       ${settings.Alliance == "Red" ? "bg-red-400" : "bg-blue-500"}`}
     >
       <h1>Settings Form</h1>
-      <AllianceSwitch
-        alliance={settings.Alliance}
-        setAlliance={(alliance) => {
-          setSettings({ ...settings, Alliance: alliance });
-        }}
-      />
+      <AllianceSwitch />
       <h2>This is not implemented yet</h2>
       <h3>
         Whoever is tasked with making forms, please make this form soon
