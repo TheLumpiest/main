@@ -19,6 +19,7 @@ export default function App() {
       className={`transition min-h-screen w-screen font-sans flex flex-col items-center
       ${settings.Alliance == "Red" ? "bg-red-bg" : "bg-blue-bg"}`}
     >
+      {/* <div className="transition min-h-screen w-screen font-sans flex flex-col items-center bg-white"> */}
       <NavBar />
       {/* the Outlet element is used to give react-router a place to put the children of this component.
           every route is rendered in the App component, so that the NavBar is shown. Every other route is
