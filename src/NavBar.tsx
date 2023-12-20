@@ -27,6 +27,7 @@ function linksFromPathname(pathname: string): LinkSignatures {
         prev: links.tele,
         next: links.pre,
       };
+    case "/":
     case "/pre":
       return {
         prev: links.settings,
