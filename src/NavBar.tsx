@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { alliance, useSettingsContext } from "./ContextProvider";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import AllianceSwitch from "./AllianceSwitch";
 
 type LinkSignature = {
@@ -16,7 +18,7 @@ type LinkSignatures = {
 const links: { [key: string]: LinkSignature } = {
   settings: { text: "Settings", to: "settings" },
   pre: { text: "PreMatch", to: "pre" },
-  auto: { text: "Autonomous", to: "auto" },
+  auto: { text: "Auto", to: "auto" },
   tele: { text: "Teleop", to: "tele" },
 };
 
@@ -58,13 +60,14 @@ export default function NavBar() {
 
   return (
     <div
-      className={`flex justify-between text-sm md:text-base w-full md:w-auto flex-row grid-1 text-white md:rounded-bl-lg md:rounded-br-lg transition font-sans items-center
+      className={`flex fixed md:relative bottom-0 md:bottom-auto left-0 md:left-auto justify-between text-sm md:text-lg lg:text-base w-full md:w-auto flex-row grid-1 text-white md:rounded-bl-lg md:rounded-br-lg transition font-sans items-center
       ${settings.Alliance == "Red" ? "bg-red-bg" : "bg-blue-bg"}`}
     >
       <Link
-        className="md:hidden bg-black bg-opacity-25 hover:bg-opacity-50 basis-1/6 flex-auto p-2 text-center"
+        className="md:hidden bg-black bg-opacity-25 hover:bg-opacity-50 basis-1/6 flex-auto py-4 md:py-2 px-2 text-center"
         to={links.prev.to}
       >
+        <ArrowBackIosIcon className="pb-0.5" fontSize="inherit" />{" "}
         {links.prev.text}
       </Link>
       <Link
@@ -91,17 +94,26 @@ export default function NavBar() {
       >
         Teleop
       </Link>
-      <div className="flex-auto flex self-center flex-row bg-black bg-opacity-50 justify-center items-center md:rounded-br-lg md:px-2">
-        <div className="flex justify-self-center font-semibold py-2 px-1 md:px-2 text-center">
+      <button
+        className="flex-auto flex self-center flex-row bg-black bg-opacity-50 justify-center items-center md:rounded-br-lg md:px-2"
+        onClick={() => {
+          setSettings({
+            ...settings,
+            Alliance: settings.Alliance == "Red" ? "Blue" : "Red",
+          });
+        }}
+      >
+        <div className="flex justify-self-center font-semibold py-4 md:py-2 px-1 md:px-2 text-center">
           Alliance
         </div>
         <AllianceSwitch />
-      </div>
+      </button>
       <Link
-        className="md:hidden bg-black bg-opacity-25 hover:bg-opacity-50 basis-1/6 flex-auto p-2 text-center"
+        className="md:hidden bg-black bg-opacity-25 hover:bg-opacity-50 basis-1/6 flex-auto py-4 md:py-2 px-2 text-center"
         to={links.next.to}
       >
-        {links.next.text}
+        {links.next.text}{" "}
+        <ArrowForwardIosIcon className="pb-0.5" fontSize="inherit" />
       </Link>
     </div>
   );
