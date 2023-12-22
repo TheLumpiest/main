@@ -5,35 +5,7 @@ import { MouseEvent } from "react";
 import AllianceSwitch from "../AllianceSwitch";
 import React from "react";
 import { useSettingsContext } from "../ContextProvider";
-
-const ScoreCounter = ({
-  label,
-  highScore,
-  setHighScore,
-}: {
-  label: string;
-  highScore: number;
-  setHighScore: (score: number) => void;
-}) => {
-  return (
-    <div className="flex flex-row items-center justify-center">
-      <div className="px-4">{label}</div>
-      <button
-        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setHighScore(highScore > 0 ? highScore - 1 : 0)}
-      >
-        -
-      </button>
-      <div className="px-4">{highScore}</div>
-      <button
-        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => setHighScore(highScore + 1)}
-      >
-        +
-      </button>
-    </div>
-  );
-};
+import ScoreCounter from "../ScoreCounter";
 
 type Props = { alliance: number; setAlliance: (alliance: number) => void };
 
