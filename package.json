@@ -9,6 +9,7 @@
     "@mui/material": "^5.15.1",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "concurrently": "^8.2.2",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "^6.20.1",
@@ -17,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "concurrently --kill-others \"npx tailwindcss -o public/output.css --watch\" \"react-scripts start\"",
     "tailwind:compile": "npx tailwindcss -o public/output.css",
     "tailwind:watch": "npx tailwindcss -o public/output.css --watch",
     "build": "react-scripts build",
