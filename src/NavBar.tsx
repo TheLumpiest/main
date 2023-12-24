@@ -60,7 +60,7 @@ export default function NavBar() {
 
   return (
     <div
-      className={`flex fixed md:relative bottom-0 md:bottom-auto mt-2.5 left-0 md:left-auto justify-between text-sm md:text-lg lg:text-base w-full md:w-auto flex-row grid-1 shadow-black/30 shadow-md text-white md:rounded-lg transition font-sans items-center
+      className={`flex fixed md:relative bottom-0 md:bottom-auto mt-2.5 left-0 md:left-auto justify-between text-sm md:text-lg lg:text-base w-full md:w-auto flex-row grid-1 shadow-lg text-white md:rounded-lg transition font-sans items-center
       ${settings.Alliance == "Red" ? "bg-red-bg" : "bg-blue-bg"}`}
     >
       <Link

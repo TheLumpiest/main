@@ -22,7 +22,7 @@ export default function App() {
       {/* <div className="transition min-h-screen w-screen font-sans flex flex-col items-center bg-white"> */}
       <div className="w-11/12 h-full md:h-min md:w-min">
         <NavBar />
-        <div className="bg-black bg-opacity-10 text-white rounded-xl p-10 mt-5 shadow-lg w-full h-full">
+        <div className="bg-black bg-opacity-25 text-white rounded-xl p-10 mt-5 shadow-lg w-full h-full">
           {/* the Outlet element is used to give react-router a place to put the children of this component.
               every route is rendered in the App component, so that the NavBar is shown. Every other route is
               shown within this App component, rendered where the Outlet tag is in this file. */}
