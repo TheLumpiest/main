@@ -27,8 +27,8 @@ export default function TeleopForm() {
         className="flex flex-col items-center justify-center"
         onSubmit={handleSubmit}
       >
-        <div className="p-4 pt-10">
-          <div className="font-semibold text-4xl text-center">Teleop</div>
+        <div className="">
+          <h1 className="font-semibold text-4xl text-center">Teleop</h1>
           <div className="flex flex-row items-center justify-center"></div>
         </div>
         <div className="p-4">
@@ -66,7 +66,7 @@ export default function TeleopForm() {
 
         <div className="flex flex-row items-center justify-center">
           <button
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-black bg-opacity-25 hover:bg-opacity-50 text-white font-bold py-2 px-4 rounded-full"
             type="submit"
           >
             Submit

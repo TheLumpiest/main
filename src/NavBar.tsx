@@ -60,7 +60,7 @@ export default function NavBar() {
 
   return (
     <div
-      className={`flex fixed md:relative bottom-0 md:bottom-auto left-0 md:left-auto justify-between text-sm md:text-lg lg:text-base w-full md:w-auto flex-row grid-1 shadow-black/50 shadow-sm text-white md:rounded-bl-lg md:rounded-br-lg transition font-sans items-center
+      className={`flex fixed md:relative bottom-0 md:bottom-auto mt-2.5 left-0 md:left-auto justify-between text-sm md:text-lg lg:text-base w-full md:w-auto flex-row grid-1 shadow-black/30 shadow-md text-white md:rounded-lg transition font-sans items-center
       ${settings.Alliance == "Red" ? "bg-red-bg" : "bg-blue-bg"}`}
     >
       <Link
@@ -71,7 +71,7 @@ export default function NavBar() {
         {links.prev.text}
       </Link>
       <Link
-        className="bg-black bg-opacity-25 hover:bg-opacity-50 py-2 hidden md:block px-4 rounded-bl-lg"
+        className="bg-black bg-opacity-25 hover:bg-opacity-50 py-2 hidden md:block px-4 rounded-l-lg"
         to="/settings"
       >
         Settings
@@ -95,7 +95,7 @@ export default function NavBar() {
         Teleop
       </Link>
       <button
-        className="flex-auto flex self-center flex-row bg-black bg-opacity-50 justify-center items-center md:rounded-br-lg md:px-2"
+        className="flex-auto flex self-center flex-row bg-black bg-opacity-50 hover:bg-opacity-60 justify-center items-center md:rounded-r-lg md:px-2"
         onClick={() => {
           setSettings({
             ...settings,
