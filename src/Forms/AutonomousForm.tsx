@@ -1,10 +1,11 @@
 import TeamSelector from "../TeamSelector";
 import Chooser from "../Chooser";
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import AllianceSwitch from "../AllianceSwitch";
 import { useSettingsContext } from "../ContextProvider";
 import React from "react";
 import ScoreCounter from "../ScoreCounter";
+import { Position } from "../shared";
 
 type Props = { alliance: number; setAlliance: (alliance: number) => void };
 
@@ -14,10 +15,12 @@ export default function AutonomousForm() {
   const [comments, setComments] = React.useState("");
   const { settings, setSettings } = useSettingsContext();
 
-  const chooserValues =
+  const chooserLabels =
     settings.Alliance == "Red"
       ? ["Red 1", "Red 2", "Red 3"]
       : ["Blue 1", "Blue 2", "Blue 3"];
+
+  const [position, setPosition] = useState("1" as Position);
 
   function handleSubmit(formData: MouseEvent<HTMLFormElement>) {
     formData.preventDefault();
@@ -32,16 +35,18 @@ export default function AutonomousForm() {
       >
         <div className="">
           <div className="font-semibold text-4xl text-center">Autonomous</div>
-          <div className="flex flex-row items-center justify-center"></div>
-          <div className="p-4">
+          <div className="p-4 text-left">
             <TeamSelector />
             <div className="text-3xl pt-4"> Position</div>
             <Chooser
-              value1={chooserValues[0]}
-              value2={chooserValues[1]}
-              value3={chooserValues[2]}
+              value={position}
+              setValue={setPosition}
+              value1={chooserLabels[0]}
+              value2={chooserLabels[1]}
+              value3={chooserLabels[2]}
+              checkedColor={settings.Alliance === "Red" ? "#DC2626" : "#2563EB"}
             />
-            <div className="flex flex-row items-center justify-center p-4">
+            <div className="flex flex-row items-start justify-left p-4">
               <div className="flex flex-col items-end justify-center gap-2">
                 <ScoreCounter
                   label="high"
@@ -57,10 +62,10 @@ export default function AutonomousForm() {
             </div>
 
             {/* comments section */}
-            <div className="flex flex-col items-center justify-center p-4">
+            <div className="flex flex-col justify-left p-4">
               <label
                 htmlFor="message"
-                className="block mb-2 text-sm font-medium text-black"
+                className="block mb-2 text-sm font-medium text-black text-left"
               >
                 Your message
               </label>

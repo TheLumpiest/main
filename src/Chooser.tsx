@@ -1,17 +1,17 @@
 import {
-  Color,
   FormControl,
   FormControlLabel,
   FormLabel,
-  Link,
   Radio,
   RadioGroup,
-  Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { Position, positions } from "./shared";
 
 type chsrProps = {
   title?: string | JSX.Element | number;
+  value: Position;
+  setValue: React.Dispatch<React.SetStateAction<Position>>;
   value1: string | JSX.Element | number;
   value2: string | JSX.Element | number;
   value3?: string | JSX.Element | number;
@@ -19,31 +19,68 @@ type chsrProps = {
   value5?: string | JSX.Element | number;
   value6?: string | JSX.Element | number;
   color?: string;
+  checkedColor: string;
 };
 
 export default function Chooser(props: chsrProps) {
+  useEffect(() => {}, [props.value1, props.value2, props.value3]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = (e.target as HTMLInputElement).value;
+    const validPosition = positions.find((pos) => pos === value);
+    if (validPosition) {
+      props.setValue(validPosition);
+    }
+  };
+
   return (
     <FormControl>
       <FormLabel id="demo-radio-buttons-group-label">{props.title}</FormLabel>
       <RadioGroup
         aria-labelledby="demo-radio-buttons-group-label"
-        defaultValue={props.value1}
+        defaultValue={1}
         name="radio-buttons-group"
         color={props.color}
+        value={props.value}
+        onChange={handleChange}
       >
         <FormControlLabel
-          value={props.value1}
-          control={<Radio />}
+          value={"1" as Position}
+          control={
+            <Radio
+              sx={{
+                "&.Mui-checked": {
+                  color: props.checkedColor,
+                },
+              }}
+            />
+          }
           label={props.value1}
         />
         <FormControlLabel
-          value={props.value2}
-          control={<Radio />}
+          value={"2" as Position}
+          control={
+            <Radio
+              sx={{
+                "&.Mui-checked": {
+                  color: props.checkedColor,
+                },
+              }}
+            />
+          }
           label={props.value2}
         />
         <FormControlLabel
-          value={props.value3}
-          control={<Radio />}
+          value={"3" as Position}
+          control={
+            <Radio
+              sx={{
+                "&.Mui-checked": {
+                  color: props.checkedColor,
+                },
+              }}
+            />
+          }
           label={props.value3}
         />
       </RadioGroup>
