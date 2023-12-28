@@ -3,9 +3,12 @@ import { createContext, useContext, useState } from "react";
 
 export type alliance = "Red" | "Blue";
 
+export const positions = ["1", "2", "3"] as const;
+export type position = (typeof positions)[number];
+
 type Settings = {
   Alliance: alliance;
-  Position: String;
+  Position: position;
   Competition: String;
 };
 

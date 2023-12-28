@@ -2,25 +2,21 @@ import TeamSelector from "../TeamSelector";
 import Chooser from "../Chooser";
 import { MouseEvent, useState } from "react";
 import AllianceSwitch from "../AllianceSwitch";
-import { useSettingsContext } from "../ContextProvider";
+import {
+  position,
+  useAutoContext,
+  useSettingsContext,
+} from "../ContextProvider";
 import React from "react";
 import ScoreCounter from "../ScoreCounter";
-import { Position } from "../shared";
+import PositionChooser from "../PositionChooser";
 
 type Props = { alliance: number; setAlliance: (alliance: number) => void };
 
 export default function AutonomousForm() {
-  const [highScore, setHighScore] = React.useState(0);
-  const [lowScore, setLowScore] = React.useState(0);
+  const { auto, setAuto } = useAutoContext();
   const [comments, setComments] = React.useState("");
   const { settings, setSettings } = useSettingsContext();
-
-  const chooserLabels =
-    settings.Alliance == "Red"
-      ? ["Red 1", "Red 2", "Red 3"]
-      : ["Blue 1", "Blue 2", "Blue 3"];
-
-  const [position, setPosition] = useState("1" as Position);
 
   function handleSubmit(formData: MouseEvent<HTMLFormElement>) {
     formData.preventDefault();
@@ -33,36 +29,29 @@ export default function AutonomousForm() {
         className="flex flex-col items-center justify-center"
         onSubmit={handleSubmit}
       >
-        <div className="">
+        <div className="flex flex-col items-center justify-center">
           <div className="font-semibold text-4xl text-center">Autonomous</div>
-          <div className="p-4 text-left">
+          <div className="p-4 text-center">
             <TeamSelector />
             <div className="text-3xl pt-4"> Position</div>
-            <Chooser
-              value={position}
-              setValue={setPosition}
-              value1={chooserLabels[0]}
-              value2={chooserLabels[1]}
-              value3={chooserLabels[2]}
-              checkedColor={settings.Alliance === "Red" ? "#DC2626" : "#2563EB"}
-            />
-            <div className="flex flex-row items-start justify-left p-4">
+            <PositionChooser />
+            <div className="flex flex-row items-start justify-center p-4">
               <div className="flex flex-col items-end justify-center gap-2">
                 <ScoreCounter
                   label="high"
-                  highScore={highScore}
-                  setHighScore={setHighScore}
+                  score={auto.UpperAuto}
+                  setScore={(score) => setAuto({ ...auto, UpperAuto: score })}
                 />
                 <ScoreCounter
                   label="low"
-                  highScore={lowScore}
-                  setHighScore={setLowScore}
+                  score={auto.LowerAuto}
+                  setScore={(score) => setAuto({ ...auto, LowerAuto: score })}
                 />
               </div>
             </div>
 
             {/* comments section */}
-            <div className="flex flex-col justify-left p-4">
+            <div className="flex flex-col justify-center p-4">
               <label
                 htmlFor="message"
                 className="block mb-2 text-sm font-medium text-black text-left"

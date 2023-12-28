@@ -4,14 +4,16 @@ import Chooser from "../Chooser";
 import { MouseEvent } from "react";
 import AllianceSwitch from "../AllianceSwitch";
 import React from "react";
-import { useSettingsContext } from "../ContextProvider";
+import { useSettingsContext, useTeleopContext } from "../ContextProvider";
 import ScoreCounter from "../ScoreCounter";
+import PositionChooser from "../PositionChooser";
 
 type Props = { alliance: number; setAlliance: (alliance: number) => void };
 
 export default function TeleopForm() {
-  const [highScore, setHighScore] = React.useState(0);
-  const [lowScore, setLowScore] = React.useState(0);
+  const { teleop, setTeleop } = useTeleopContext();
+  // const [highScore, setHighScore] = React.useState(0);
+  // const [lowScore, setLowScore] = React.useState(0);
   const [comments, setComments] = React.useState("");
 
   const { settings } = useSettingsContext();
@@ -31,18 +33,20 @@ export default function TeleopForm() {
           <h1 className="font-semibold text-4xl text-center">Teleop</h1>
           <div className="flex flex-row items-center justify-center"></div>
         </div>
+        <div className="text-3xl pt-4"> Position</div>
+        <PositionChooser />
         <div className="p-4">
           <div className="flex flex-row items-center justify-center p-4">
             <div className="flex flex-col items-end justify-center gap-2">
               <ScoreCounter
                 label="high"
-                highScore={highScore}
-                setHighScore={setHighScore}
+                score={teleop.UpperTele}
+                setScore={(score) => setTeleop({ ...teleop, UpperTele: score })}
               />
               <ScoreCounter
                 label="low"
-                highScore={lowScore}
-                setHighScore={setLowScore}
+                score={teleop.LowerTele}
+                setScore={(score) => setTeleop({ ...teleop, LowerTele: score })}
               />
             </div>
           </div>

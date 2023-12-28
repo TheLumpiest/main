@@ -6,12 +6,12 @@ import {
   RadioGroup,
 } from "@mui/material";
 import React, { useEffect } from "react";
-import { Position, positions } from "./shared";
+import { position, positions } from "./ContextProvider";
 
 type chsrProps = {
   title?: string | JSX.Element | number;
-  value: Position;
-  setValue: React.Dispatch<React.SetStateAction<Position>>;
+  value: position;
+  setValue: (value: position) => void;
   value1: string | JSX.Element | number;
   value2: string | JSX.Element | number;
   value3?: string | JSX.Element | number;
@@ -45,7 +45,7 @@ export default function Chooser(props: chsrProps) {
         onChange={handleChange}
       >
         <FormControlLabel
-          value={"1" as Position}
+          value={"1" as position}
           control={
             <Radio
               sx={{
@@ -58,7 +58,7 @@ export default function Chooser(props: chsrProps) {
           label={props.value1}
         />
         <FormControlLabel
-          value={"2" as Position}
+          value={"2" as position}
           control={
             <Radio
               sx={{
@@ -71,7 +71,7 @@ export default function Chooser(props: chsrProps) {
           label={props.value2}
         />
         <FormControlLabel
-          value={"3" as Position}
+          value={"3" as position}
           control={
             <Radio
               sx={{
