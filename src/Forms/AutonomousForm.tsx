@@ -1,4 +1,3 @@
-import TeamSelector from "../TeamSelector";
 import Chooser from "../Chooser";
 import { MouseEvent, useState } from "react";
 import AllianceSwitch from "../AllianceSwitch";
@@ -32,18 +31,16 @@ export default function AutonomousForm() {
         <div className="flex flex-col items-center justify-center">
           <div className="font-semibold text-4xl text-center">Autonomous</div>
           <div className="p-4 text-center">
-            <TeamSelector />
             <div className="text-3xl pt-4"> Position</div>
-            <PositionChooser />
             <div className="flex flex-row items-start justify-center p-4">
               <div className="flex flex-col items-end justify-center gap-2">
                 <ScoreCounter
-                  label="high"
+                  label="Speaker"
                   score={auto.UpperAuto}
                   setScore={(score) => setAuto({ ...auto, UpperAuto: score })}
                 />
                 <ScoreCounter
-                  label="low"
+                  label="Amp"
                   score={auto.LowerAuto}
                   setScore={(score) => setAuto({ ...auto, LowerAuto: score })}
                 />

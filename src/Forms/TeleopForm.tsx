@@ -1,5 +1,4 @@
 //create the default function for a form
-import TeamSelector from "../TeamSelector";
 import Chooser from "../Chooser";
 import { MouseEvent } from "react";
 import AllianceSwitch from "../AllianceSwitch";
@@ -33,18 +32,16 @@ export default function TeleopForm() {
           <h1 className="font-semibold text-4xl text-center">Teleop</h1>
           <div className="flex flex-row items-center justify-center"></div>
         </div>
-        <div className="text-3xl pt-4"> Position</div>
-        <PositionChooser />
         <div className="p-4">
           <div className="flex flex-row items-center justify-center p-4">
             <div className="flex flex-col items-end justify-center gap-2">
               <ScoreCounter
-                label="high"
+                label="Speaker"
                 score={teleop.UpperTele}
                 setScore={(score) => setTeleop({ ...teleop, UpperTele: score })}
               />
               <ScoreCounter
-                label="low"
+                label="Amp"
                 score={teleop.LowerTele}
                 setScore={(score) => setTeleop({ ...teleop, LowerTele: score })}
               />
@@ -62,6 +59,10 @@ export default function TeleopForm() {
             <textarea
               id="message"
               rows={4}
+              value={teleop.Text}
+              onChange={(event) =>
+                setTeleop({ ...teleop, Text: event.currentTarget.value })
+              }
               className="block p-2.5 w-full text-sm text-black bg-transparent placeholder-black rounded-lg border border-black"
               placeholder="Write your thoughts here..."
             ></textarea>

@@ -21,35 +21,50 @@ import TeleopForm from "./Forms/TeleopForm";
 import NavBar from "./NavBar";
 import App from "./App";
 
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "pre",
-        element: <PreMatchForm />,
-      },
-      {
-        path: "auto",
-        element: <AutonomousForm />,
-      },
-      {
-        path: "settings",
-        element: <SettingsForm />,
-      },
-      {
-        path: "tele",
-        element: <TeleopForm />,
-      },
-      {
-        path: "/",
-        element: <Navigate to="/pre" replace />,
-      },
-    ],
-  },
-]);
+// const router = createHashRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//     children: [
+//       {
+//         path: "pre",
+//         element: <PreMatchForm />,
+//       },
+//       {
+//         path: "auto",
+//         element: <AutonomousForm />,
+//       },
+//       {
+//         path: "settings",
+//         element: <SettingsForm />,
+//       },
+//       {
+//         path: "tele",
+//         element: <TeleopForm />,
+//       },
+//       {
+//         path: "/",
+//         element: <Navigate to="/pre" replace />,
+//       },
+//     ],
+//   },
+// ]);
 
+// const rootElement = document.getElementById("root");
+// const root = ReactDOM.createRoot(rootElement!);
+
+// root.render(
+//   <ThemeProvider theme={theme}>
+//     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+//     <CssBaseline />
+//     <ContextProvider>
+//       <div className="min-h-screen w-screen">
+//         <RouterProvider router={router} />
+//       </div>
+//     </ContextProvider>
+//     {/* <PreMatchForm /> */}
+//   </ThemeProvider>
+// );
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement!);
 
@@ -58,9 +73,7 @@ root.render(
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
     <ContextProvider>
-      <div className="min-h-screen w-screen">
-        <RouterProvider router={router} />
-      </div>
+      <App />
     </ContextProvider>
     {/* <PreMatchForm /> */}
   </ThemeProvider>

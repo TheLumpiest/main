@@ -1,20 +1,23 @@
 import React, { PropsWithChildren } from "react";
 import { createContext, useContext, useState } from "react";
+import { GetTeams } from "./Data";
 
 export type alliance = "Red" | "Blue";
 
 export const positions = ["1", "2", "3"] as const;
 export type position = (typeof positions)[number];
 
-type Settings = {
+export type Settings = {
   Alliance: alliance;
   Position: position;
-  Competition: String;
+  Competition: string;
+  FrcTeams: Array<String>;
 };
 
 type SettingsState = {
   settings: Settings;
-  setSettings: React.Dispatch<React.SetStateAction<Settings>>;
+  // setSettings: React.Dispatch<React.SetStateAction<Settings>>;
+  setSettings: (value: Settings) => void;
 };
 
 type PreMatch = {
@@ -42,6 +45,7 @@ type Teleop = {
   UpperTele: number;
   LowerTele: number;
   EndGame: number | String;
+  Text: string;
 };
 
 type TeleopState = {
@@ -58,11 +62,13 @@ const defTeleop: Teleop = {
   UpperTele: 0,
   LowerTele: 0,
   EndGame: "",
+  Text: "",
 };
 const defSettings: Settings = {
   Alliance: "Red",
   Position: "1",
-  Competition: "",
+  Competition: "2024mdowi",
+  FrcTeams: [""],
 };
 const defPreMatch: PreMatch = {
   Team: "",
@@ -80,10 +86,22 @@ export function ContextProvider(props: PropsWithChildren<{}>) {
   const [auto, setAuto] = useState<Auto>(defAuto);
   const [teleop, setTeleop] = useState<Teleop>(defTeleop);
 
+  // const teams = GetTeams(settings.Competition).then((teams) => {
+  //   setSettings({
+  //     ...settings,
+  //     FrcTeams: teams,
+  //   });
+  // });
+
   const { children } = props;
   return (
     <div>
-      <SettingsContext.Provider value={{ settings, setSettings }}>
+      <SettingsContext.Provider
+        value={{
+          settings,
+          setSettings,
+        }}
+      >
         <PreMatchContext.Provider value={{ preMatch, setPreMatch }}>
           <AutoContext.Provider value={{ auto, setAuto }}>
             <TeleopContext.Provider value={{ teleop, setTeleop }}>

@@ -9,6 +9,7 @@
     "@mui/material": "^5.15.1",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "axios": "^1.6.5",
     "concurrently": "^8.2.2",
     "react": "latest",
     "react-dom": "latest",
