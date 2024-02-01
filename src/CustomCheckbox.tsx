@@ -6,6 +6,10 @@ type bxprops = {
   lable: string;
   color: string;
   value: boolean;
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => void;
 };
 export default function CustomCheckbox(props: bxprops) {
   const { auto, setAuto } = useAutoContext();
@@ -13,7 +17,6 @@ export default function CustomCheckbox(props: bxprops) {
     <Box>
       <FormControlLabel
         label={props.lable}
-        value={props.value}
         control={
           <Checkbox
             sx={{
@@ -21,12 +24,9 @@ export default function CustomCheckbox(props: bxprops) {
                 color: props.color,
               },
             }}
-            onChange={(event) =>
-              setAuto({
-                ...auto,
-                Taxi: event.target.checked,
-              })
-            }
+            value={props.value}
+            onChange={props.onChange}
+            checked={props.value}
           />
         }
       />

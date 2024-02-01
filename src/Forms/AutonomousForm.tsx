@@ -25,6 +25,8 @@ export default function AutonomousForm(props: chsrProps) {
     console.log("Submitted");
   }
 
+  console.log("auto.Taxi according to Auto form:", auto.Taxi);
+
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col items-center justify-center align-middle">
@@ -33,9 +35,10 @@ export default function AutonomousForm(props: chsrProps) {
           <Grid
             container
             spacing={2}
+            direction={"column"}
             flexShrink={8}
             justifyContent={"end"}
-            alignItems={"stretch"}
+            alignItems={"end"}
           >
             <Grid item>
               <ScoreCounter
@@ -72,6 +75,12 @@ export default function AutonomousForm(props: chsrProps) {
             lable="Taxi"
             color={settings.Alliance === "Red" ? "#DC2626" : "#2563EB"}
             value={auto.Taxi}
+            onChange={(event) =>
+              setAuto({
+                ...auto,
+                Taxi: event.target.checked,
+              })
+            }
           />
         </div>
       </div>

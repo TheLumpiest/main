@@ -21,10 +21,11 @@ export default function TeleopForm() {
         <div className="flex flex-row items-center justify-center ">
           <Grid
             container
+            direction={"column"}
             spacing={2}
             flexShrink={8}
             justifyContent={"end"}
-            alignItems={"stretch"}
+            alignItems={"end"}
           >
             <Grid item>
               <ScoreCounter

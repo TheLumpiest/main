@@ -2,6 +2,8 @@ import * as React from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import {
+  defaultAuto,
+  defaultTeleop,
   useAutoContext,
   usePreMatchContext,
   useSettingsContext,
@@ -16,13 +18,15 @@ import { useState } from "react";
 import supabase from "./Supabase/supabaseClient";
 
 export default function App() {
-  const { settings } = useSettingsContext();
+  const { settings, setSettings } = useSettingsContext();
   const { preMatch, setPreMatch } = usePreMatchContext();
-  const { auto } = useAutoContext();
-  const { teleop } = useTeleopContext();
+  const { auto, setAuto } = useAutoContext();
+  const { teleop, setTeleop } = useTeleopContext();
   const [formError, setFormError] = useState("");
 
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     if (preMatch.Team == "" || preMatch.Match == undefined) {
       setFormError("Please fill out form correctly");
@@ -51,8 +55,17 @@ export default function App() {
       console.log(error);
       setFormError("Please fill out form correctly");
     }
-    setPreMatch({ ...preMatch, Team: "" });
-    setPreMatch({ ...preMatch, Match: preMatch.Match! + 1 });
+
+    console.log("we are bojanglin");
+    setPreMatch({
+      ...preMatch,
+      Team: "",
+      Match: preMatch.Match! + 1,
+      NoShow: false,
+    });
+    setAuto({ ...defaultAuto });
+    setTeleop(defaultTeleop);
+    console.log(preMatch.NoShow);
   };
 
   return (

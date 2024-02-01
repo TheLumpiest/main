@@ -23,6 +23,7 @@ import {
   TextField,
   TextFieldVariants,
 } from "@mui/material";
+import CustomCheckbox from "../CustomCheckbox";
 
 export default function PreMatchForm() {
   const { settings, setSettings } = useSettingsContext();
@@ -56,28 +57,17 @@ export default function PreMatchForm() {
           ></NumberInput>
         </Grid>
         <Grid item>
-          <Box>
-            <FormControlLabel
-              label="NoShow"
-              control={
-                <Checkbox
-                  value={preMatch.NoShow}
-                  onChange={(event) =>
-                    setPreMatch({
-                      ...preMatch,
-                      NoShow: event.target.checked,
-                    })
-                  }
-                  sx={{
-                    "&.Mui-checked": {
-                      color:
-                        settings.Alliance === "Red" ? "#DC2626" : "#2563EB",
-                    },
-                  }}
-                />
-              }
-            />
-          </Box>
+          <CustomCheckbox
+            lable="NoShow"
+            color={settings.Alliance === "Red" ? "#DC2626" : "#2563EB"}
+            value={preMatch.NoShow}
+            onChange={(event) =>
+              setPreMatch({
+                ...preMatch,
+                NoShow: event.target.checked,
+              })
+            }
+          />
         </Grid>
       </Grid>
     </div>
